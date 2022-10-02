@@ -19,7 +19,7 @@ All request need to have the rule below on header
 ````
 For the exceptions returns be in json format.
 
-###Create route
+### Create route
 <b>URI</b>
 
 ````
@@ -45,7 +45,7 @@ POST
 - Database error
 - Server error
 
-###All route
+### All route
 <b>URI</b>
 
 ````
@@ -83,7 +83,7 @@ GET
 - Database error
 - Server error
 
-###Update route
+### Update route
 <b>URI</b>
 
 ````
