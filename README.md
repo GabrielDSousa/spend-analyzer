@@ -70,7 +70,7 @@ GET
 - Database error
 - Server error
 
-###Read route
+### Read route
 <b>URI</b>
 
 ````
@@ -111,7 +111,7 @@ Could have any or none of the fields below:
 - Database error
 - Server error
 
-###Delete route
+### Delete route
 <b>URI</b>
 
 ````
