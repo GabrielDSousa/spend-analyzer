@@ -125,6 +125,16 @@ DELETE
 - Database error
 - Server error
 
+## Roadmap
+* [ ] Auth with user
+* [ ] Transactions by user
+* [ ] New filters
+* [ ] Read CSV and transform in transactions
+* [ ] NuBank and Inter maps
+* [ ] A custom map for CSV
+* [ ] Deploy to Heroku
+
+
 ## License
 
 The api Spend Analyzer is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
