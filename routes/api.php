@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::controller(TransactionController::class)->prefix('/transactions')->group(function () {
+    Route::post('/', 'store');
+    Route::get('/all', 'index');
+    Route::prefix('/{transaction}')->group(function () {
+        Route::get('/', 'show');
+        Route::put('/', 'update');
+        Route::delete('/', 'destroy');
+    });
 });
