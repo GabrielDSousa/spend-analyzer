@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTransactionRequest extends FormRequest
+class SignupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +25,12 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function rules()
     {
-        $str = 'string|nullable';
         return [
-            'date' => 'date_format:Y-m-d',
-            'amount' => 'numeric',
-            'description' => $str,
-            'file' => $str,
-            'type' => $str,
-            'bank' => $str
+            'name' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required|string',
+            'confirmation' => 'required|string|same:password',
+            'rules' => 'required|array',
         ];
     }
 }

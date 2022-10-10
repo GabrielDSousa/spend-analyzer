@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 /**
@@ -19,7 +20,16 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected array $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank'];
+    protected array $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank', 'user_id'];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected array $casts = [
+        'date' => 'datetime'
+    ];
 
     public function scopeFilter($query, array $filters)
     {
@@ -53,10 +63,36 @@ class Transaction extends Model
             )
         );
 
-        $query->when($filters['user_id'] ?? false, fn($query, $user) =>
+        $query->when($filters['start'] ?? false, fn($query, $start) =>
             $query->where(fn($query) =>
-                $query->where('user_id', $user)
+                $query->where('date','>=', $start)
             )
         );
+
+        $query->when($filters['until'] ?? false, fn($query, $end) =>
+            $query->where(fn($query) =>
+                $query->where('date','<=', $end)
+            )
+        );
+
+        $query->when($filters['expenses'] ?? false, fn($query, $expenses) =>
+            $query->where(fn($query) =>
+                $query->where('amount','<', 0)
+            )
+        );
+
+        $query->when($filters['incomes'] ?? false, fn($query, $incomes) =>
+            $query->where(fn($query) =>
+                $query->where('amount','>', 0)
+            )
+        );
+    }
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

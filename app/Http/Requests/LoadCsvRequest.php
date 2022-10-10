@@ -1,11 +1,15 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTransactionRequest extends FormRequest
+class LoadCsvRequest extends FormRequest
 {
+    private const REQUIRED_STRING = 'required|string';
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,14 +27,11 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function rules()
     {
-        $str = 'string|nullable';
         return [
-            'date' => 'date_format:Y-m-d',
-            'amount' => 'numeric',
-            'description' => $str,
-            'file' => $str,
-            'type' => $str,
-            'bank' => $str
+            'path' => self::REQUIRED_STRING,
+            'filename' => self::REQUIRED_STRING,
+            'bank' => self::REQUIRED_STRING,
+            'type' => self::REQUIRED_STRING,
         ];
     }
 }

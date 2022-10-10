@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('maps', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->timestamp('date');
-            $table->float('amount');
+            $table->string('bank');
+            $table->string('date');
+            $table->string('date_format');
+            $table->string('amount');
             $table->string('description');
-            $table->string('file')->nullable();
             $table->string('type');
-            $table->string('bank')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('maps');
     }
 };
