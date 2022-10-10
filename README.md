@@ -14,10 +14,24 @@ The api have a filter to make personalized metrics for the transactions.
 All request need to have the rule below on header
 ````json
 {
-    "Accept":"application/json"
+    "Accept":"application/json",
 }
 ````
-For the exceptions returns be in json format.
+The exceptions will return a json format.
+
+##Auth
+[wip]
+
+##Map
+[wip]
+
+##Transactions
+All requests for transactions need to add the rule below on header
+````json
+{
+    "Authorization": Bearer {token generated on /api/auth/signup or /api/auth/login}
+}
+````
 
 ### Create route
 <b>URI</b>
@@ -60,10 +74,10 @@ GET
     - file: Name of the file that the transaction came, if exists;
     - type: If was debit, credit, or extra
     - bank: The bank where the transaction came
-    - [wip] start: On the format Y-m-d, Get all transactions after this date;
-    - [wip] start: On the format Y-m-d, Get all transactions before this date;
-    - [wip] incomes: Get all transactions with positive amount;
-    - [wip] expenses: Get all transactions with negative amount;
+    - start: On the format Y-m-d, Get all transactions after this date;
+    - until: On the format Y-m-d, Get all transactions before this date;
+    - incomes: Get all transactions with positive amount;
+    - expenses: Get all transactions with negative amount;
 
 <b>Responses</b>
 - List of Transactions based on the given filter, list will be paginated.
@@ -125,13 +139,17 @@ DELETE
 - Database error
 - Server error
 
+##CSV
+[wip]
+
 ## Roadmap
-* [ ] Auth with user
-* [ ] Transactions by user
-* [ ] New filters
-* [ ] Read CSV and transform in transactions
-* [ ] NuBank and Inter maps
-* [ ] A custom map for CSV
+* [x] Auth with user
+* [x] Transactions by user
+* [x] New filters
+* [x] Read CSV and transform in transactions
+* [x] NuBank and Inter maps
+* [x] A custom map for CSV
+* [ ] Update readme
 * [ ] Deploy to Heroku
 
 

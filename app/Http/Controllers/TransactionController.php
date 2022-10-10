@@ -24,7 +24,7 @@ class TransactionController extends Controller
     public function index(ShowTransactionRequest $request)
     {
         return $request->user()->transactions()->latest()
-            ->filter(request(['date', 'description', 'file', 'type', 'bank']))
+            ->filter(request(['date', 'description', 'file', 'type', 'bank', 'start', 'until', 'expenses', 'incomes']))
             ->paginate(18)
             ->withQueryString();
     }

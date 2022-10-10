@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->dateTime('date');
+            $table->timestamp('date');
             $table->float('amount');
             $table->string('description');
             $table->string('file')->nullable();
