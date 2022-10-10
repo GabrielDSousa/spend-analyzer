@@ -19,7 +19,7 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected array $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank'];
+    protected array $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank', 'user_id'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -52,11 +52,13 @@ class Transaction extends Model
                 $query->where('bank', $bank)
             )
         );
+    }
 
-        $query->when($filters['user_id'] ?? false, fn($query, $user) =>
-            $query->where(fn($query) =>
-                $query->where('user_id', $user)
-            )
-        );
+    /**
+     * Get the post that owns the comment.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

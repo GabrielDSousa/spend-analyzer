@@ -1,10 +1,12 @@
 <?php
 
+
 namespace App\Http\Requests;
+
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateTransactionRequest extends FormRequest
+class DeleteTransactionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +15,7 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->tokenCan('transaction:delete');
     }
 
     /**
@@ -23,14 +25,6 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function rules()
     {
-        $str = 'string|nullable';
-        return [
-            'date' => 'date_format:Y-m-d',
-            'amount' => 'numeric',
-            'description' => $str,
-            'file' => $str,
-            'type' => $str,
-            'bank' => $str
-        ];
+        return [];
     }
 }
