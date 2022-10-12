@@ -2,12 +2,11 @@
 
 # About Spend Analyzer API
 
-Spend Analyzer is an api for recording income and expenses. Manually or with a csv bank statement.
-The api has a filter to make a list of transactions, for future use in a front end that will do financial analysis.
+Spend Analyzer is an API for recording income and expenses. Manually or with a CSV bank statement. The API has a filter to make a list of transactions for future use in a front end that will do financial analysis.
 
 ## Using the API
-The full documentation and postman collection for test is on the link:
-<a href="https://documenter.getpostman.com/view/22435256/2s83znpM84">Link for Documentation</a>
+The documentation and postman collection for the test is on the link: 
+<a href="https://documenter.getpostman.com/view/22435256/2s83znpM84">Link for Documentation</a>.
 
 ## Roadmap
 * [x] Auth with user
@@ -22,4 +21,4 @@ The full documentation and postman collection for test is on the link:
 
 ## License
 
-The api Spend Analyzer is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The API Spend Analyzer is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
