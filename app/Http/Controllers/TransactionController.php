@@ -101,7 +101,7 @@ class TransactionController extends Controller
     {
         if($request->user()->id === $transaction->user()->first()->id) {
             $transaction->destroy($transaction->id);
-            return response()->json(["success"], 200);
+            return response()->json(["message" => "Success."], 200);
         }
 
         throw new UnauthorizedException(config(self::EXCEPTIONS_MESSAGE_UNAUTHORIZED));

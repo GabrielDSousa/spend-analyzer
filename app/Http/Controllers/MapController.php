@@ -66,6 +66,6 @@ class MapController extends Controller
     {
         $map->delete();
 
-        return response()->json(["message" => "success"], 200);
+        return response()->json(["message" => "Success."], 200);
     }
 }

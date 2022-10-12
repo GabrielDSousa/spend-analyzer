@@ -33,12 +33,6 @@ class Transaction extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['date'] ?? false, fn($query, $date) =>
-            $query->where(fn($query) =>
-                $query->where('date', $date)
-            )
-        );
-
         $query->when($filters['description'] ?? false, fn($query, $description) =>
             $query->where(fn($query) =>
                 $query->where('description', 'like', '%' . $description . '%')
@@ -47,7 +41,7 @@ class Transaction extends Model
 
         $query->when($filters['file'] ?? false, fn($query, $file) =>
             $query->where(fn($query) =>
-                $query->where('file', $file)
+                $query->where('file', 'like', '%' . $file . '%')
             )
         );
 
@@ -59,7 +53,7 @@ class Transaction extends Model
 
         $query->when($filters['bank'] ?? false, fn($query, $bank) =>
             $query->where(fn($query) =>
-                $query->where('bank', $bank)
+                $query->where('bank', 'like', '%' . $bank . '%')
             )
         );
 
