@@ -2,8 +2,8 @@
 
 # About Spend Analyzer API
 
-Laravel is an api for register incomes and expenses. Manually or with a csv bank statement.
-The api have a filter to make personalized metrics for the transactions.
+Spend Analyzer is an api for recording income and expenses. Manually or with a csv bank statement.
+The api has a filter to make a list of transactions, for future use in a front end that will do financial analysis.
 
 ## Using the API
 The full documentation and postman collection for test is on the link:
