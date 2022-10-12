@@ -28,7 +28,7 @@ class LoadCsvRequest extends FormRequest
     public function rules()
     {
         return [
-            'path' => self::REQUIRED_STRING,
+            'link' => self::REQUIRED_STRING,
             'filename' => self::REQUIRED_STRING,
             'bank' => self::REQUIRED_STRING,
             'type' => self::REQUIRED_STRING,

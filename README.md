@@ -19,13 +19,13 @@ All request need to have the rule below on header
 ````
 The exceptions will return a json format.
 
-##Auth
+## Auth
 [wip]
 
-##Map
+## Map
 [wip]
 
-##Transactions
+## Transactions
 All requests for transactions need to add the rule below on header
 ````json
 {
@@ -139,7 +139,7 @@ DELETE
 - Database error
 - Server error
 
-##CSV
+## CSV
 [wip]
 
 ## Roadmap

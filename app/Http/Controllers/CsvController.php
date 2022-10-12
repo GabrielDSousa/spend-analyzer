@@ -4,21 +4,26 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoadCsvRequest;
 use App\Models\Map;
-use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class CsvController extends Controller
 {
     /**
      * @param String $resource
+     * @param String $type
      * @return Collection
      */
-    private function csvToArray(String $resource)
+    private function csvToArray(String $resource, String $type)
     {
+        $filename = time().".csv";
+        $path = "csv/{$type}/{$filename}";
         try {
-            $csv= file_get_contents($resource);
+            copy($resource, public_path($path));
+            $csv= file_get_contents($path);
         } catch (\RuntimeException $e) {
             throw new NotFoundResourceException(sprintf('Error opening file "%s".', $resource), 0, $e);
         }
@@ -39,12 +44,13 @@ class CsvController extends Controller
             return $keyed;
         });
 
+        File::delete(public_path($path));
         return $csvCollection;
     }
 
     public function load(LoadCsvRequest $request)
     {
-        $csvCollection = $this->csvToArray($request->get('path'));
+        $csvCollection = $this->csvToArray($request->get('link'), $request->get('type'));
         $map = Map::where(['bank' => $request->get('bank'), 'type' => $request->get('type')])->first();
 
         foreach ($csvCollection as $transaction) {
