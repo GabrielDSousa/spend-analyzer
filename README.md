@@ -1,10 +1,5 @@
 <p align="center"><a href="#" target="_blank"><img src="https://raw.githubusercontent.com/GabrielDSousa/arts/master/flatwallet.svg" width="200" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="#"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
 # About Spend Analyzer API
 
 Laravel is an api for register incomes and expenses. Manually or with a csv bank statement.
