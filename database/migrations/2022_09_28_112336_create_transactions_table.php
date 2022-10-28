@@ -15,7 +15,6 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamp('date');
             $table->float('amount');
             $table->string('description');
@@ -23,6 +22,11 @@ return new class extends Migration
             $table->string('type');
             $table->string('bank')->nullable();
             $table->timestamps();
+
+            $table->foreignId('user_id')
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

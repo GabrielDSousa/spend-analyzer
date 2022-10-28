@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 class AuthController extends Controller
 {
     /**
-     * Create a user for auth
+     * Create a user for auth and generate a API token
      *
      * @param SignupRequest $request
      * @return JsonResponse
@@ -27,11 +27,11 @@ class AuthController extends Controller
 
         auth()->attempt(["email" => $request->get('email'), "password" => $request->get('password')]);
 
-        return response()->json(['token' => $user->createToken($user->email, $user->permissions)->plainTextToken],200);
+        return response()->json(['token' => $user->createToken($user->email, $user->permissions)->plainTextToken],201);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Login a user to generate a API token
      *
      * @param LoginRequest $request
      * @return JsonResponse
@@ -42,7 +42,7 @@ class AuthController extends Controller
         {
             $user = auth()->user();
             $user->tokens()->where('name', $user->email)->delete();
-            return response()->json(['token' => $user->createToken('token', $user->permissions)->plainTextToken],200);
+            return response()->json(['token' => $user->createToken($user->email, $user->permissions)->plainTextToken],200);
         }
 
         return response()->json(['message'=> 'Unauthenticated.'], 401);
@@ -50,14 +50,13 @@ class AuthController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Revoke the API token of the authenticated user
      *
      * @param Request $request
      * @return JsonResponse
      */
     public function logout(Request $request)
     {
-        // Revoke the token that was used to authenticate the current request...
         $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message'=> 'Success.'], 200);

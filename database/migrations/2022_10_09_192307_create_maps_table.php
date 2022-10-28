@@ -22,6 +22,12 @@ return new class extends Migration
             $table->string('description');
             $table->string('type');
             $table->timestamps();
+
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained('users')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
