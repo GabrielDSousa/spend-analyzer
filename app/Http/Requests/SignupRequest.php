@@ -27,7 +27,7 @@ class SignupRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:App\Models\User',
             'password' => 'required|string',
             'confirmation' => 'required|string|same:password',
             'rules' => 'required|array',

@@ -29,18 +29,19 @@ class MapController extends Controller
      * Store a newly created resource in storage.
      *
      * @param StoreMapRequest $request
-     * @return Response
+     * @return JsonResponse
      */
     public function store(StoreMapRequest $request)
     {
-        return (new Map)->create([
+        return response()->json(["map" => (new Map)->create([
             'bank' => $request->get('bank'),
             'type' => $request->get('type'),
             'date' => $request->get('date'),
             'date_format' => $request->get('date_format'),
             'amount' => $request->get('amount'),
-            'description' => $request->get('description')
-        ]);
+            'description' => $request->get('description'),
+            'user_id' => auth()->user()->id ?? null
+        ])], 201);
     }
 
     /**

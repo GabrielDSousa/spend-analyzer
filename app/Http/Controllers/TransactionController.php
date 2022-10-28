@@ -37,16 +37,14 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        $transaction = $request->user()->transactions()->create([
+        return response()->json(["transaction" => $request->user()->transactions()->create([
             'date' => $request->get('date'),
             'amount' => $request->get('amount'),
             'description' => $request->get('description'),
             'file' => $request->get('file'),
             'type' => $request->get('type'),
             'bank' => $request->get('bank')
-        ]);
-
-        return response()->json(["transaction" => $transaction], 200);
+        ])], 201);
     }
 
     /**
