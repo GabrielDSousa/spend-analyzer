@@ -20,14 +20,14 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected array $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank', 'user_id'];
+    protected $fillable = ['date', 'amount', 'description', 'file', 'type', 'bank', 'user_id'];
 
     /**
      * The attributes that should be cast.
      *
      * @var array<string, string>
      */
-    protected array $casts = [
+    protected $casts = [
         'date' => 'datetime'
     ];
 

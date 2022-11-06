@@ -18,7 +18,7 @@ class Map extends Model
 {
     use HasFactory;
 
-    protected array $fillable = ['bank', 'date', 'date_format', 'amount', 'description', 'type'];
+    protected $fillable = ['bank', 'date', 'date_format', 'amount', 'description', 'type'];
 
     public function scopeFilter($query, array $filters)
     {

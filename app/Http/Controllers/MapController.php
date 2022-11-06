@@ -7,7 +7,6 @@ use App\Http\Requests\ReadMapRequest;
 use App\Http\Requests\StoreMapRequest;
 use App\Models\Map;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class MapController extends Controller
 {
