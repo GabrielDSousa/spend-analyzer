@@ -6,7 +6,7 @@ Spend Analyzer is an API for recording income and expenses. Manually or with a C
 
 ## Using the API
 The documentation and postman collection for the test is on the link: 
-<a href="https://documenter.getpostman.com/view/22435256/2s83znpM84">Link for Documentation</a>.
+<a href="https://documenter.getpostman.com/view/4664269/2s8YYMo1hM">Link for Documentation</a>.
 
 ## Roadmap
 * [x] Auth with user
@@ -16,7 +16,8 @@ The documentation and postman collection for the test is on the link:
 * [x] NuBank and Inter maps
 * [x] A custom map for CSV
 * [x] Update readme
-* [ ] Deploy to Heroku
+* [x] Deploy to ~~Heroku~~ Railway.app
+* [ ] Unit test using PHPUnit with 80%+ coverage
 
 
 ## License
