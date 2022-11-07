@@ -21,6 +21,7 @@ class CsvController extends Controller
     {
         $filename = time().".csv";
         $path = "csv/{$type}/{$filename}";
+        chmod($path, 777);
         try {
             copy($resource, public_path($path));
             $csv= file_get_contents($path);
