@@ -20,10 +20,11 @@ class CsvController extends Controller
     private function csvToArray(String $resource, String $type)
     {
         $filename = time().".csv";
-        $path = "csv/{$type}/{$filename}";
-        chmod($path, 777);
+        $path = public_path("csv/{$type}/");
+        $fp = fopen($filename, 777, $path);
         try {
-            copy($resource, public_path($path));
+            copy($resource, public_path($path.$filename));
+            fclose($fp);
             $csv= file_get_contents($path);
         } catch (\RuntimeException $e) {
             throw new NotFoundResourceException(sprintf('Error opening file "%s".', $resource), 0, $e);
