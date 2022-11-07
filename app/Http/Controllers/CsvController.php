@@ -7,6 +7,7 @@ use App\Models\Map;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\Translation\Exception\NotFoundResourceException;
 
 class CsvController extends Controller
@@ -19,10 +20,10 @@ class CsvController extends Controller
     private function csvToArray(String $resource, String $type)
     {
         $filename = time().".csv";
-
+        $path = "csv/{$type}/{$filename}";
         try {
-            copy($resource, public_path($filename));
-            $csv= file_get_contents(public_path($filename));
+            copy($resource, public_path($path));
+            $csv= file_get_contents($path);
         } catch (\RuntimeException $e) {
             throw new NotFoundResourceException(sprintf('Error opening file "%s".', $resource), 0, $e);
         }
@@ -43,7 +44,7 @@ class CsvController extends Controller
             return $keyed;
         });
 
-        File::delete(public_path(public_path($filename)));
+        File::delete(public_path($path));
         return $csvCollection;
     }
 
