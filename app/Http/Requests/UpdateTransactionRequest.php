@@ -13,7 +13,7 @@ class UpdateTransactionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->user()->tokenCan('transaction:update');
     }
 
     /**

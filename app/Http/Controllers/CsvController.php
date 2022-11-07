@@ -20,10 +20,10 @@ class CsvController extends Controller
     private function csvToArray(String $resource, String $type)
     {
         $filename = time().".csv";
-        $path = "csv/{$type}/{$filename}";
+
         try {
-            copy($resource, public_path($path));
-            $csv= file_get_contents($path);
+            Storage::disk('public')->put($filename, file_get_contents($resource));
+            $csv= Storage::disk('public')->get($filename);
         } catch (\RuntimeException $e) {
             throw new NotFoundResourceException(sprintf('Error opening file "%s".', $resource), 0, $e);
         }
@@ -44,7 +44,7 @@ class CsvController extends Controller
             return $keyed;
         });
 
-        File::delete(public_path($path));
+        Storage::disk('public')->delete($filename);
         return $csvCollection;
     }
 
